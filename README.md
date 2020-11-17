@@ -1,1 +1,3 @@
-# RLadies_SJO_intro_xaringan
+# Introducción a xaringan
+
+Aspectos básicos para crear presentaciones en R utilizando `xaringan`
