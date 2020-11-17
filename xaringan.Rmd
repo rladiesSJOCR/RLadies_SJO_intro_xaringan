@@ -1,0 +1,262 @@
+---
+title: "Introducción a Xaringan"
+subtitle: "Rladies San José "
+author: "Paula Rodríguez"
+date: "29/10/2019"
+output:
+  xaringan::moon_reader:
+    css: [rladies]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+
+---
+
+#Empecemos
+
+El creador de este paquete se llama Yihui Xie quién también creó el paquete que vimos el mes pasado **Bookdown**
+
+Lo creo tras la necesidad de una nueva herramienta hipster que nadie más usara en congresos
+
+.center[![](https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)]
+---
+
+Descargar el paquete
+
+```{r}
+#install.packages("xaringan")
+```
+
+también se puede descargar la versión desde github
+
+```{r}
+#devtools::install_github('yihui/xaringan')
+```
+
+---
+.center[![description of the image](img1.png)]
+---
+
+#Lo básico
+
+Aquí es donde tenemos las especificaciones básicas de nuestra presentación
+
+.center[![description of the image](pres.png)]
+---
+
+#¿Cómo empezamos?
+
+Dentro del codigo del markdown se inicia una nueva diapositiva al poner --- al inicio de la linea
+
+se puede utilizar *italic* poniendo la palabra entre asteriscos 
+
+también **bold** con aterisco doble
+
+si queremos un poco más de espacio entre lineas se puede usar < br > 
+<br>
+<br>
+<br>
+así
+---
+
+
+#titulos
+
+Markdown hace titulos con el signo de numeral antes de la palabra #asi
+
+#Entre más signos, más pequeño se hace el titulo 
+
+##Este tiene dos 
+
+###Este tres
+
+####Este cuatro
+
+#####y así
+---
+
+#Saltos en la misma diapositiva
+Para dejar texto "oculto" se puede separar con solo dos rayas: -- como estas
+
+
+--
+
+boom
+
+--
+
+sorpresa
+
+
+
+
+---
+
+
+Recordemos que **Xaringan** funciona con la misma sintaxis que *Markdown*
+
+podemos hacer listas con + y * para hacer bullets 
+
+
+
+* esto es una lista
+* esto es otro punto
+  + esto es un punto dentro del "otro punto"
+  + recuerden indentar para que salga bien
+  + deben poner un espacio entre el simbolo y la palabra o no se hace lista
+  
+---
+
+#también podemos usar Latex
+
+$$\mu_{y|x}= \beta_0 + \beta_1x_1$$
+se hace poniendo doble simbolo de dolar entre la ecuación
+
+<br>
+
+si se dejan espacios no va a salir bien, así:
+
+$\mu_{y|x}= \beta_0 + \beta_1x_1$$
+
+---
+#Ahora cambiemos un poco el formato
+
+al poner el siguiente texto al inicio de la diapositiva, vamos a cambiar el color y centrar el texto horizontal y verticalmente 
+
+**class: inverse, center, middle**
+---
+
+class: inverse, center, middle
+
+#Este es el resultado
+
+---
+
+#Podemos agregar fotos y Gifs
+
+con este texto  ! [] (link)
+
+![](https://www.ukcophumour.co.uk/wp-content/uploads/f2w/1526816_674334732588821_1244473478_n.jpg)
+
+
+---
+
+#Bueno ya que tenemos las bases de contenido...
+
+...qué más podemos hacer?
+
+podemos agregarle un tema específico al inicio del markdown
+
+output: <br>
+  xaringan::moon_reader: <br>
+    css: [metropolis]
+    
+probemos que pasa con otros temas
+* metropolis
+* hygge
+* ninjutsu
+* lucy
+
+pueden encontrar mas temas [aquí](https://github.com/yihui/xaringan/wiki/Themes)
+
+---
+#Agregar hipervinculos
+
+la parabra que contiene el hipervinculo se pone entre llaves cuadradas [] y el link se pone entre ()
+
+de esta manera: [ palabra ] (link) 
+
+[Github](https://github.com/malfaro2/RladiesSJO) de RLadies
+
+<br>
+
+Wiki de [perritos](https://es.wikipedia.org/wiki/Portal:Perros)
+
+
+---
+
+#Un par de cosas más complejas
+
+podemos usar argumentos de css para cambiar las diapositivas
+
+por ejemplo:
+
+background-image: url("purris.jpg") <br>
+background-position: 50% 50% <br>
+class: center, bottom, inverse
+
+<br>
+
+debe iniciar en la primera linea de la nueva diapositiva o no va a funcionar
+---
+background-image: url("purris.jpg")
+background-position: 50% 50%
+class: center, bottom, inverse
+
+#Este es el resultado
+
+
+---
+#¿Por qué Xaringan y no PP o Prezi?
+
+si bien existen limitaciones, al estar utilizando RStudio se puede correr código libremente sin tener que estar pegando fotos para crear las presentaciones
+
+```{r}
+fit = lm(dist ~ 1 + speed, data = cars)
+coef(summary(fit))
+```
+
+
+---
+
+```{r cars, fig.height=4, dev='svg'}
+par(mar = c(4, 4, 1, .1))
+plot(cars, pch = 19, col = 'darkgray', las = 1)
+abline(fit, lwd = 2)
+```
+
+---
+
+```{r}
+knitr::kable(head(iris), format = 'html')
+```
+
+---
+
+
+
+# Resaltar
+
+Al usar `#<<` se resaltan las lineas de código
+
+````markdown
+`r ''````{r tidy=FALSE}
+library(ggplot2)
+ggplot(mtcars) + 
+  aes(mpg, disp) + 
+  geom_point() +   #<<
+  geom_smooth()    #<<
+```
+````
+
+Output:
+
+```{r tidy=FALSE, eval=FALSE}
+library(ggplot2)
+ggplot(mtcars) + 
+  aes(mpg, disp) + 
+  geom_point() +   #<<
+  geom_smooth()    #<<
+```
+
+---
+#Otros recursos
+
+* Ninja Template de Xaringan
+* [Tutorial](http://www.favstats.eu/post/xaringan_tut/)
+
+* [Ejemplos](https://github.com/favstats/xaringan_slides/)
+* [Transiciones](https://www.garrickadenbuie.com/blog/2018/12/03/animate-xaringan-slide-transitions/)
+* [Wiki](https://github.com/yihui/xaringan/wiki) de Xaringan para otras opciones más avanzadas
